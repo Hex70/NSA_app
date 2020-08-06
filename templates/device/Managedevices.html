@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Manage Devices</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+         <a class="btn btn-success" href="http://127.0.0.1:8000/device/add"><h4>Add Device </h4></a>
+     
+      <div class="card-body">
+        
+
+        <br>
+        <h6 class="card-title">Manage Devices</h6>
+      
+        <div class="table-responsive">
+          <table id="dataTableExample" class="table">
+            <thead>
+              <tr>
+                <th>Hostname</th>
+                <th>IP Address</th>
+                <th>Location</th>
+                <th>Last Scan</th>
+                <th>Security State</th>
+                <th>Run-Config</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for devs in dev %}
+              <tr>
+                <td>{{ devs.hostname }}</td>
+                <td>{{ devs.IP_address }}</td>
+                <td>{{ devs.device_location }}</td>
+                <td>{{ devs.hostname }}</td>
+                <td>{{ devs.hostname }}</td>
+                <td>{{ devs.hostname }}</td>
+                <td>
+                  <a class="btn btn-success" href="{% url 'Analyse' devs.id %}">Analyse</a>
+                  <button type="button" class="btn btn-primary">Details</button>
+                  <a class="btn btn-sm btn-danger" href="{% url 'deleteDevice' devs.id %}">Delete</a></td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
